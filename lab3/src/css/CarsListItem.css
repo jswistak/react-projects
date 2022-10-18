@@ -1,0 +1,22 @@
+.car-item{
+    padding: 20px;
+}
+.car-item > div{
+    margin: 0px;
+    text-align: center;
+}
+.next-to{
+    float: left;
+}
+.name{
+    width: 31%;
+}
+.params{
+    width: 31%;
+}
+.price{
+    width: 31%;
+}
+.clear{
+    clear: both;
+}
