@@ -17,7 +17,10 @@ const CarsListItemComponent = ( props: TProps ) =>{
     const [price, setPrice] = useState(props.car.pricePerDay);
     return (
         <div className="car-item">
-            <div className='name next-to'><h3>{props.car.name}</h3></div>
+            <div className='name next-to'>
+                <h3>{props.car.name}</h3>
+                <img src={props.car.image} width="100" height="100" alt={props.car.name}></img>
+                </div>
             <div className='params next-to'>
                 {props.car.AC? "has": "has no"} AC<br/>
                 {props.car.doors} doors<br/> {props.car.seats} seats
