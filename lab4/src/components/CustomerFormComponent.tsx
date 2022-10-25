@@ -21,14 +21,14 @@ const CustomerFormComponent = () =>{
             case 0:
                 return <NameStepComponent customerPersonalData={customerPersonalData} onSubmit={() => setStep(1)}/>;
             case 1:
-                return <AddressStepComponent addressData={addressData} onSubmit={() => setStep(2)}/>;
+                return <AddressStepComponent addressData={addressData} setStep={setStep}/>;
             case 2:
                 return <SummaryStepComponent customerPersonalData={customerPersonalData} addressData={addressData} setStep={setStep}/>;
         }
     }
 
     return (
-        <div>
+        <div style={{margin: "25px"}}>
             {renderStep()}
         </div>
     );  
