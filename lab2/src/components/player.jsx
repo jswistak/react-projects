@@ -9,7 +9,7 @@ function Player(props){
         <div>
             <label>Name: {props.name}</label><br/>
             <label>Played: {props.played}</label><br/>
-            <button onClick={props.click}>
+            <button onClick={props.click} disabled={props.turn}>
                 {props.turn? 'This user is playing now' : 'Play'}
             </button>
             
