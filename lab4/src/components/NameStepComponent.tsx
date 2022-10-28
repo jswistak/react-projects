@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import CustomerPersonalData from '../types/CustomerPersonalData';
 import { Box, Button } from '@mui/material';
 import TextField from '@mui/material/TextField';
+import { isKeyObject } from 'util/types';
 
 type TProps = {
     customerPersonalData: CustomerPersonalData;
@@ -16,43 +17,48 @@ const NameStepComponent = (props: TProps) => {
         email: "",
         surname: ""
     });
-    const validateName = () => {
+    const validateName = ():boolean => {
         //TODO
         if(formData.name.length < 3){
             setError((prevError) => ({...prevError, name: "Name is too short"}));
+            return false;
         }
         else{
             setError((prevError) => ({...prevError, name: ""}));
         }
         console.log(formData.name.length);
+        return true;
     }
-    const validateLastName = () => {
+    const validateLastName = ():boolean => {
         if(formData.lastName.length < 3){
             setError((prevError) => ({...prevError, surname: "Surname is too short"}));
+            return false;
         }
         else{
             setError((prevError) => ({...prevError, surname: ""}));
         }
         console.log("validateLastName");
+        return true;
     }
-    const validateEmail = () => {
+    const validateEmail = ():boolean => {
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if(!regex.test(formData.email)){
             setError((prevError) => ({...prevError, email: "Incorrect email"}));
+            return false;
         }
         else{
             setError((prevError) => ({...prevError, email: ""}));
         }
         console.log("validateEmail");
+        return true;
     }
      
-    const validate = () => {
-        
-        validateName();
-        validateLastName();
-        validateEmail();
-        
-        return (error.name === "" && error.surname === "" && error.email === "");
+    const validate = (): boolean => {
+        let isOK: boolean = true;
+        isOK = validateName() && isOK;
+        isOK = validateLastName() && isOK;
+        isOK = validateEmail() && isOK;
+        return isOK;
     }
     const [formData, setFormData] = useState(new CustomerPersonalData("", "", ""));
     const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
