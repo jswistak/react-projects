@@ -243,7 +243,7 @@ const AddressStepComponent = (props: TProps) => {
         <form onSubmit={(e) => {
             e.preventDefault();
             if (invoiceAddressSameAsDelivery) {
-                setFormData((prev) => ({...prev , invoiceAddress: prev.invoiceAddress}));
+                setFormData((prev) => ({...prev , invoiceAddress: prev.deliveryAddress}));
                 //props.onSubmit(new CustomerAddresses(formData.deliveryAddress, formData.deliveryAddress));
             }
             if (validate()) {
@@ -256,44 +256,47 @@ const AddressStepComponent = (props: TProps) => {
                 <div>
                     <TextField id="address" name="deliveryAddress.street" label="Address" variant="outlined"
                         error={error.deliveryAddress.street !== ""} helperText={error.deliveryAddress.street} 
-                        onChange={onDeliveryAddressStreetChange} onBlur={validateDeliveryStreet}/>
-                </div>
+                        onChange={onDeliveryAddressStreetChange} value={formData.deliveryAddress.street} onBlur={validateDeliveryStreet}/>
+                </div> 
                 <div>
                     <TextField id="city" name="deliveryAddress.city" label="City" variant="outlined"
                         error={error.deliveryAddress.city !== ""} helperText={error.deliveryAddress.city} 
-                        onChange={onDeliveryAddressCityChange} onBlur={validateDeliveryCity}/>
+                        onChange={onDeliveryAddressCityChange} value={formData.deliveryAddress.city} onBlur={validateDeliveryCity}/>
                 </div>
                 <div>
                     <TextField id="zipCode" name="deliveryAddress.zipCode" label="Zip Code" variant="outlined"
                         error={error.deliveryAddress.zipCode !== ""} helperText={error.deliveryAddress.zipCode} 
-                        onChange={onDeliveryAddressZipCodeChange} onBlur={validateDeliveryZipCode}/>
+                        onChange={onDeliveryAddressZipCodeChange} value={formData.deliveryAddress.zipCode} onBlur={validateDeliveryZipCode}/>
                 </div>
 
             </Box>
             <FormControlLabel control={<Checkbox value={invoiceAddressSameAsDelivery}
                 onClick={() => {
-                    setInvoiceAddressSameAsDelivery(!invoiceAddressSameAsDelivery);
+                    
 
-                    if(invoiceAddressSameAsDelivery){
+                    if(!invoiceAddressSameAsDelivery){
+                        setFormData((prev) => ({...prev , invoiceAddress: prev.deliveryAddress}));
+                        setError((prev) => ({...prev , invoiceAddress: new AddressData("", "", "")}));
                     }
+                    setInvoiceAddressSameAsDelivery(!invoiceAddressSameAsDelivery);
                 }} />} label="Invoice the same as delivery?" />
 
 
             <Box style={{ margin: "25px" }}>
                 <div>
                     <TextField id="i-address" name="invoiceAddress.street" label="Invoice Address" variant="outlined"
-                        error={error.invoiceAddress.street !== ""} helperText={error.invoiceAddress.street} disabled={invoiceAddressSameAsDelivery} 
-                        onChange={onInvoiceAddressStreetChange} onBlur={validateInvoiceStreet}/>
+                        error={error.invoiceAddress.street !== "" && !invoiceAddressSameAsDelivery} helperText={error.invoiceAddress.street} disabled={invoiceAddressSameAsDelivery} 
+                        onChange={onInvoiceAddressStreetChange} value={formData.invoiceAddress.street} onBlur={validateInvoiceStreet}/>
                 </div>
                 <div>
                     <TextField id="i-city" name="invoiceAddress.city" label="Invoice City" variant="outlined"
-                        error={error.invoiceAddress.city !== ""} helperText={error.invoiceAddress.city} disabled={invoiceAddressSameAsDelivery} 
-                        onChange={onInvoiceAddressCityChange} onBlur={validateInvoiceCity}/>
+                        error={error.invoiceAddress.city !== "" && !invoiceAddressSameAsDelivery} helperText={error.invoiceAddress.city} disabled={invoiceAddressSameAsDelivery} 
+                        onChange={onInvoiceAddressCityChange} value={formData.invoiceAddress.city} onBlur={validateInvoiceCity}/>
                 </div>
                 <div>
                     <TextField id="i-zipCode" name="invoiceAddress.zipCode" label="Invoice Zip Code" variant="outlined"
-                        error={error.invoiceAddress.zipCode !== ""} helperText={error.invoiceAddress.zipCode} disabled={invoiceAddressSameAsDelivery} 
-                        onChange={onInvoiceAddressZipCodeChange} onBlur={validateInvoiceZipCode}/>
+                        error={error.invoiceAddress.zipCode !== "" && !invoiceAddressSameAsDelivery} helperText={error.invoiceAddress.zipCode} disabled={invoiceAddressSameAsDelivery} 
+                        onChange={onInvoiceAddressZipCodeChange} value={formData.invoiceAddress.zipCode} onBlur={validateInvoiceZipCode}/>
                 </div>
             </Box>
             <Button onClick={props.goBack}>Go back</Button>
