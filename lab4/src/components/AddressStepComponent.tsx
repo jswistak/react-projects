@@ -29,7 +29,7 @@ const AddressStepComponent = (props: TProps) => {
         if(invoiceAddressSameAsDelivery){
             setFormData((prev) => ({...prev , invoiceAddress: {...prev.invoiceAddress, street: formData.deliveryAddress.street}}));
         }
-        if(formData.deliveryAddress.street.length < 1 && !/\S/.test(formData.deliveryAddress.street)){
+        if(formData.deliveryAddress.street.length < 1){
             setError((prevError) => ({...prevError, deliveryAddress: {
                 ...prevError.deliveryAddress,
                 street: "Street is too short",
