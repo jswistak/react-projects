@@ -19,7 +19,7 @@ const NameStepComponent = (props: TProps) => {
     });
     const validateName = ():boolean => {
         //TODO
-        if(formData.name.length < 3){
+        if(formData.name.length < 1){
             setError((prevError) => ({...prevError, name: "Name is too short"}));
             return false;
         }
@@ -30,7 +30,7 @@ const NameStepComponent = (props: TProps) => {
         return true;
     }
     const validateLastName = ():boolean => {
-        if(formData.lastName.length < 3){
+        if(formData.lastName.length < 1){
             setError((prevError) => ({...prevError, surname: "Surname is too short"}));
             return false;
         }

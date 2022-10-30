@@ -20,8 +20,8 @@ const AddressStepComponent = (props: TProps) => {
         invoiceAddress: new AddressData("", "", "")
     });
     const [formData, setFormData] = useState({
-        deliveryAddress: new AddressData("", "", ""),
-        invoiceAddress: new AddressData("", "", "")
+        deliveryAddress: props.addressData.deliveryAddress,
+        invoiceAddress: props.addressData.invoiceAddress
     });
     const regex = /^[0-9]{2}-[0-9]{3}$/;
     
@@ -29,7 +29,7 @@ const AddressStepComponent = (props: TProps) => {
         if(invoiceAddressSameAsDelivery){
             setFormData((prev) => ({...prev , invoiceAddress: {...prev.invoiceAddress, street: formData.deliveryAddress.street}}));
         }
-        if(formData.deliveryAddress.street.length < 3){
+        if(formData.deliveryAddress.street.length < 1 && !/\S/.test(formData.deliveryAddress.street)){
             setError((prevError) => ({...prevError, deliveryAddress: {
                 ...prevError.deliveryAddress,
                 street: "Street is too short",
@@ -48,7 +48,7 @@ const AddressStepComponent = (props: TProps) => {
         if(invoiceAddressSameAsDelivery){
             setFormData((prev) => ({...prev , invoiceAddress: {...prev.invoiceAddress, city: formData.deliveryAddress.city}}));
         }
-        if(formData.deliveryAddress.city.length < 3){
+        if(formData.deliveryAddress.city.length < 1){
             setError((prevError) => ({...prevError, deliveryAddress: {
                 street: prevError.deliveryAddress.street,
                 zipCode: prevError.deliveryAddress.zipCode,
@@ -90,7 +90,7 @@ const AddressStepComponent = (props: TProps) => {
     //invoice validation
     const validateInvoiceStreet = () => {
         
-        if(formData.invoiceAddress.street.length < 3){
+        if(formData.invoiceAddress.street.length < 1){
             setError((prevError) => ({...prevError, invoiceAddress: {
                 ...prevError.invoiceAddress,
                 street: "Street is too short",
@@ -107,7 +107,7 @@ const AddressStepComponent = (props: TProps) => {
     }
     const validateInvoiceCity = useCallback(() => {
         
-        if(formData.invoiceAddress.city.length < 3){
+        if(formData.invoiceAddress.city.length < 1){
             setError((prevError) => ({...prevError, invoiceAddress: {
                 ...prevError.invoiceAddress,
                 city: "City is too short",
