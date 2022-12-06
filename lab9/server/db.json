@@ -1,0 +1,76 @@
+{
+  "employees": [
+    {
+      "id": "5dc9bdc63d2a39982fbf83d8",
+      "isActive": true,
+      "age": 21,
+      "name": "Bates Parker",
+      "company": "MIRACULA",
+      "email": "batesparker@miracula.com"
+    },
+    {
+      "id": "5dc9bdc6f0c10cec4f579a65",
+      "isActive": false,
+      "age": 39,
+      "name": "Hobbs Sullivan",
+      "company": "VURBO",
+      "email": "hobbssullivan@vurbo.com"
+    },
+    {
+      "id": "5dc9bdc6cd6f618976e00dfa",
+      "isActive": true,
+      "age": 26,
+      "name": "Alisha Stephenson",
+      "company": "SURETECH",
+      "email": "alishastephenson@suretech.com"
+    },
+    {
+      "id": "5dc9bdc6b0001d85ead79e47",
+      "isActive": false,
+      "age": 25,
+      "name": "Bryant Mccormick",
+      "company": "TALKALOT",
+      "email": "bryantmccormick@talkalot.com"
+    },
+    {
+      "id": "5dc9bdc6e2b02c719ed956a7",
+      "isActive": false,
+      "age": 35,
+      "name": "Kayla Simon",
+      "company": "TALENDULA",
+      "email": "kaylasimon@talendula.com"
+    },
+    {
+      "id": "111111111111111111111111",
+      "isActive": true,
+      "age": 39,
+      "name": "Delete me and you'll see errors",
+      "company": "PROSURE",
+      "email": "error@prosure.com"
+    },
+    {
+      "id": "5dc9bdc6fb9ede50b4c65fed",
+      "isActive": true,
+      "age": 21,
+      "name": "Ross Dickerson",
+      "company": "PROXSOFT",
+      "email": "rossdickerson@proxsoft.com"
+    },
+    {
+      "id": "5dc9bdc68e268a789771e9da",
+      "isActive": false,
+      "age": 30,
+      "name": "Trudy Bauer",
+      "company": "COMTEXT",
+      "email": "trudybauer@comtext.com"
+    },
+    {
+      "id": "5dc9bdc6b62ea8498f1e2da4",
+      "isActive": true,
+      "age": 39,
+      "name": "Raquel Walter",
+      "company": "PROSURE",
+      "email": "raquelwalter@prosure.com"
+    }
+  ]
+}
