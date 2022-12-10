@@ -8,8 +8,20 @@ export interface AddEmployeeFormProps {
 }
 
 const AddEmployeeForm: React.FC<AddEmployeeFormProps> = (props: AddEmployeeFormProps) => {
+    const [name, setName] = useState('');
+
     return (
-        <></>
+        <form>
+            <input type="text" value={name} onChange={(event) => setName(event.target.value)}/>
+            <button type="button" onClick={() => props.hideForm()}>Cancel</button>
+            <button type="button" onClick={() => {
+                props.saveEmployee({
+                    id: generateKey(),
+                    name: name,
+                    isActive: true,
+                });
+            }}>Save</button>
+        </form>
     )
 }
 
