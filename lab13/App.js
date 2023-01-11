@@ -29,10 +29,10 @@ function CountriesScreen({navigation}) {
     else{
       url = 'https://restcountries.com/v3.1/all'
     }
-    const response = await fetch(url)
-    const data = await response.json()
-    //console.log(data)
-    setCountries(data)
+    const response = await fetch(url).then(response => response.ok? response.json() : [])
+    
+    console.log(response)
+    setCountries(response)
     setLoading(false)
   }
 
