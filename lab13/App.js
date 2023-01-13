@@ -15,14 +15,20 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useEffect, useState } from 'react';
 
+let timestamp = 0;
+
 function CountriesScreen({navigation}) {
   const [isLoading, setLoading]  = useState(false)
   const [countries, setCountries] = useState([])
   const [search, setSearch] = useState('');
-
+  
   const getCountries = async () => {
     setLoading(true)
     var url;
+    const date = (new Date()).getTime();
+    //const timestamp = date.getTime;
+    console.log(date, search);
+
     if(search.length >= 3){
       url = 'https://restcountries.com/v3.1/name/' + search
     }
@@ -31,8 +37,11 @@ function CountriesScreen({navigation}) {
     }
     const response = await fetch(url).then(response => response.ok? response.json() : [])
     
-    console.log(response)
-    setCountries(response)
+    //console.log(response)
+    if(timestamp < date){
+      timestamp = date;
+      setCountries(response);
+    }
     setLoading(false)
   }
 
@@ -41,7 +50,7 @@ function CountriesScreen({navigation}) {
       headerSearchBarOptions : { onChangeText: (search) => setSearch(search.nativeEvent.text)}
     })
     getCountries()
-    console.log(countries)
+    //console.log(countries)
   },[search])
 
   const navigateToCountryDetails = (country) => {
@@ -75,7 +84,7 @@ function CountriesScreen({navigation}) {
 
 function CountryDetailsScreen({route}) {
   const country = route.params;
-  console.log(country)
+  //console.log(country)
 
   const flag = 'https://flagcdn.com/48x36/' + country.cca2.toLowerCase() + '.png';
 
